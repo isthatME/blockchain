@@ -1,9 +1,15 @@
-const Block = require('./Block');
- 
- class Blockchain {
-    constructor() {
+const Block = require(`./Block`);
+
+class Blockchain {
+    constructor(difficulty) {
+        console.log(`\Criando Blockchain...`);
         this.chain = [this.createGenesisBlock()];
-        this.difficulty = 4;
+        this.difficulty = difficulty;
+        console.log(`Blockchain criada!`);
+        console.log(`Dificuldade: ${difficulty}`);
+        console.log(`\n* Block Gênesis: `);
+        console.log(`Nonce: ${this.chain[0].nonce}`);
+        console.log(`Hash: ${this.chain[0].hash}`);
     }
     createGenesisBlock() {
         return new Block(0, "23/04/1997", "Genesis block", "0");
