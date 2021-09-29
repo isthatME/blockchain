@@ -7,9 +7,9 @@ class Blockchain {
         this.difficulty = difficulty;
         console.log(`Blockchain criada!`);
         console.log(`Dificuldade: ${difficulty}`);
-        console.log(`\n* Block Gênesis: `);
-        console.log(`Nonce: ${this.chain[0].nonce}`);
-        console.log(`Hash: ${this.chain[0].hash}`);
+        // console.log(`\n* Block Gênesis: `);
+        // console.log(`Nonce: ${this.chain[0].nonce}`);
+        // console.log(`Hash: ${this.chain[0].hash}`);
     }
     createGenesisBlock() {
         return new Block(0, "23/04/1997", "Genesis block", "0");
@@ -18,7 +18,9 @@ class Blockchain {
         return this.chain[this.chain.length - 1];
     }
     addNewBlock(newBlock) {
-        newBlock.previousHash = this.getLastestBlock().hash;
+        if(this.chain.length > 1) {
+            newBlock.previousHash = this.getLastestBlock().hash;
+        }
         newBlock.mineBlock(this.difficulty);
         this.chain.push(newBlock);
     }
